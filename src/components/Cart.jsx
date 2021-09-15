@@ -1,14 +1,26 @@
 import Button from "react-bootstrap/Button";
 import { FaTrash } from "react-icons/fa";
 import { Col, Row } from "react-bootstrap";
+import { connect } from 'react-redux'
 
-const Cart = ({ cart = [] }) => (
+const mapStateToProps = state => ({
+  cart: state.cart.products
+})
+
+const mapDispatchToProps = dispatch => ({
+  removeFromCart: (index) => dispatch({
+    type: 'REMOVE_ITEM_FROM_CART',
+    payload: index
+  })
+})
+
+const Cart = ({ cart, removeFromCart }) => (
   <Row>
     <Col sm={12}>
       <ul style={{ listStyle: "none" }}>
         {cart.map((book, i) => (
           <li key={i} className="my-4">
-            <Button variant="danger" onClick={() => {}}>
+            <Button variant="danger" onClick={() => removeFromCart(i)}>
               <FaTrash />
             </Button>
             <img
@@ -33,4 +45,4 @@ const Cart = ({ cart = [] }) => (
   </Row>
 );
 
-export default Cart;
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
