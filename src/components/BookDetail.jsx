@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
-import { addToCartAction, addToCartActionThunk } from "../actions";
+import { addToCartAction } from "../actions";
 
 // mapStateToProps
 // mapDispatchToProps
@@ -10,7 +10,7 @@ import { addToCartAction, addToCartActionThunk } from "../actions";
 const mapStateToProps = state => state
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: (bookToAdd) => dispatch(addToCartActionThunk(bookToAdd)),
+  addToCart: (bookToAdd) => dispatch(addToCartAction(bookToAdd)),
 })
 
 class BookDetail extends Component {
